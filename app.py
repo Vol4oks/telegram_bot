@@ -1,9 +1,9 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils import executor
 
-import config
+import pc_config
 
-bot = Bot(config.token)
+bot = Bot(pc_config.token)
 dp = Dispatcher(bot)
 
 
