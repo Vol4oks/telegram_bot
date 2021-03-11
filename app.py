@@ -12,6 +12,8 @@ async def get_message(message: types.Message):
 	chat_id = message.chat.id
 	text = ' Тестовый текст'
 
-	await bot.send_message(chat_id=chat_id, text=text)
+	sent_message = await bot.send_message(chat_id=chat_id, text=text)
+	print(sent_message.to_python())
+	
 
 executor.start_polling(dp)
