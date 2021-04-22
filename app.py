@@ -1,19 +1,14 @@
-from aiogram import Bot, Dispatcher, types
-from aiogram.utils import executor
-
-import pc_config
-
-bot = Bot(pc_config.token)
-dp = Dispatcher(bot)
+from aiogram import executor
+from handlers import dp
+import filters
+import middlewares
+from utils.notify_admins import on_startup_notify
 
 
-@dp.message_handler()
-async def get_message(message: types.Message):
-	chat_id = message.chat.id
-	text = ' Тестовый текст'
+async def on_startup(dp):
+	filters.setup(dp)
+	middlewares.setup(dp)
+	await on_startup_notify(dp)
 
-	sent_message = await bot.send_message(chat_id=chat_id, text=text)
-	print(sent_message.to_python())
-	
-
-executor.start_polling(dp)
+if __name__ == '__main__':
+	executor.start_polling(dp, on_startup=on_startup)
