@@ -1,16 +1,9 @@
 import logging
-from aiogram.utils.exceptions import (
-    Unauthorized, InvalidQueryID, TelegramAPIError,
-    CantDemoteChatCreator, MessageNotModified,
-    MessageToDeleteNotFound, MessageTextIsEmpty,
-    RetryAfter, CantParseEntities,
-    MessageCantBeDeleted
-)
 
 from loader import dp
 
 
-@dp.errors_handlers()
+@dp.errors_handler()
 async def errors_handler(update, exception):
     """
 
@@ -18,6 +11,14 @@ async def errors_handler(update, exception):
     :param exception:
     :return:
     """
+    from aiogram.utils.exceptions import (
+        Unauthorized, InvalidQueryID, TelegramAPIError,
+        CantDemoteChatCreator, MessageNotModified,
+        MessageToDeleteNotFound, MessageTextIsEmpty,
+        RetryAfter, CantParseEntities,
+        MessageCantBeDeleted
+    )
+
     if isinstance(exception, CantDemoteChatCreator):
         logging.debug("Can't demote chat creator\nНевозможно понизить уровень создателя чата ")
         return True
