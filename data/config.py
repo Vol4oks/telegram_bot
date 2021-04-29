@@ -1,11 +1,9 @@
 import os
-from dotenv import load_dotenv
+import pc_config
 
-load_dotenv()
-
-BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
+BOT_TOKEN = pc_config.token
 admins = [
-    362089194,
+    340899114,
 ]
 
 ip = os.getenv('ip')
